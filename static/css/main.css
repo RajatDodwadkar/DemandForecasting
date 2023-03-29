@@ -1,0 +1,44 @@
+/* 
+  Type Scale :
+    Base :- 16px;
+    Scale :- 1.333 (Perfect Fourth)
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+#container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+body {
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 67px;
+}
+
+h2 {
+  font-size: 50px;
+}
+
+h3 {
+  font-size: 38px;
+}
+
+h4 {
+  font-size: 28px;
+}
+
+h5 {
+  font-size: 21px;
+}
