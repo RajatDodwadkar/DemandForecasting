@@ -18,6 +18,49 @@
   justify-content: center;
 }
 
+/** Navbar Styling */
+
+#navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#navbar ul {
+  list-style: none;
+}
+
+#title {
+  font-size: 30px;
+  margin: 16px;
+  font-weight: 600;
+  display: inline-flex;
+  user-select: none;
+}
+
+#nav-link-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#nav-links {
+  display: flex;
+  flex-direction: row;
+}
+
+#nav-links li a {
+  margin: 10px 30px;
+}
+
+.nav-item a {
+  font-size: 21px;
+  font-weight: 600;
+  color: #3a3a3a;
+  text-decoration: none;
+}
+
+
 body {
   font-size: 16px;
 }
