@@ -27,8 +27,7 @@ body {
 
 #login-form input {
   outline: none;
-  border: none; /*1px solid gray;*/
-  /* border-radius: 8px; */
+  border: none;
   border-bottom: 1px solid gray;
   margin-bottom: 40px;
   padding: 8px;
