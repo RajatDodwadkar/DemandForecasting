@@ -1,38 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="../../static/images/favicon.png"
-      type="image/x-icon"
-    />
-    <link rel="stylesheet" href="../../static/css/auth/login-style.css" />
-    <link rel="stylesheet" href="../../static/css/main.css" />
-    <title>Log In - Demand Forecasting</title>
-  </head>
-  <body>
-    <main class="container" style="height:100vh;">
-      <div id="login-image-div">
-        <img src="../../static/images/login.svg" alt="" />
-      </div>
-      <div id="login-form-div">
-        <h1 id="login-header">Login</h1>
-        <form id="login-form" method="POST" action="#">
-          <p id="email-inp-sec">
-            <label id="lg-email-lb" for="email"><h4>Email</h4></label>
-            <input name="email" type="text" placeholder="example@gmail.com" />
-          </p>
-          <p id="password-inp-sec">
-            <label id="lg-password-lb" for="password"><h4>Password</h4></label>
-            <input name="password" type="password" placeholder="********" />
-          </p>
-          <button type="submit" id="login-btn">Login</button>
-        </form>
-        <a id="signup-link" href="signup.html">Don't have an account? Sign Up here</a>
-      </div>
-    </main>
-  </body>
-</html>
+{% extends 'base.html' %}
+
+{% block stylelink %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth/login-style.css') }}" />
+{% endblock %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+<main class="container" style="height:100vh;">
+  <div id="login-image-div">
+    <img src="../../static/images/login.svg" alt="" />
+  </div>
+  <div id="login-form-div">
+    <h1 id="login-header">Login</h1>
+    <form id="login-form" method="POST" action="#">
+      <p id="email-inp-sec">
+        <label id="lg-email-lb" for="email"><h4>Email</h4></label>
+        <input name="email" type="text" placeholder="example@gmail.com" />
+      </p>
+      <p id="password-inp-sec">
+        <label id="lg-password-lb" for="password"><h4>Password</h4></label>
+        <input name="password" type="password" placeholder="********" />
+      </p>
+      <button type="submit" id="login-btn">Login</button>
+    </form>
+    <a id="signup-link" href="{{ url_for('signup') }}">Don't have an account? Sign Up here</a>
+  </div>
+</main>
+{% endblock %}
