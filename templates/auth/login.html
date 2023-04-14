@@ -13,7 +13,7 @@
   </div>
   <div id="login-form-div">
     <h1 id="login-header">Login</h1>
-    <form id="login-form" method="POST" action="#">
+    <form id="login-form" method="POST" action="/login">
       <p id="email-inp-sec">
         <label id="lg-email-lb" for="email"><h4>Email</h4></label>
         <input name="email" type="text" placeholder="example@gmail.com" />
@@ -24,6 +24,9 @@
       </p>
       <button type="submit" id="login-btn">Login</button>
     </form>
+    {% if msg %}
+      <p style="margin: 10px auto; color: rgb(216, 44, 44);">{{ msg }}</p>
+    {% endif %}
     <a id="signup-link" href="{{ url_for('signup') }}">Don't have an account? Sign Up here</a>
   </div>
 </main>

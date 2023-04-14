@@ -24,9 +24,9 @@
         <div id="nav-links">
           <li id="home" class="nav-item"><a href="{{ url_for('index') }}">Home</a></li>
           <li id="about-us" class="nav-item"><a href="{{ url_for('aboutus') }}">About Us</a></li>
-          {% if logged_in %}
-            <li id="about-us" class="nav-item"><a href="/logout">Logout</a></li>
+          {% if session.logged_in %}
             <li id="tools" class="nav-item"><a href="{{ url_for('tools') }}">Tool</a></li>
+            <li id="about-us" class="nav-item"><a href="/logout">Logout</a></li>
           {% else %}
             <li id="about-us" class="nav-item"><a href="/login">Login</a></li>
           {% endif %}

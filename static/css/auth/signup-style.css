@@ -5,7 +5,7 @@ body {
 #signup-image-div img {
   display: flex;
   width: 75%;
-  animation: 0.8s ease-in 0s 1 img-slider;
+  /* animation: 0.8s ease-in 0s 1 img-slider; */
 }
 
 #signup-form-div {
@@ -14,7 +14,7 @@ body {
   box-shadow: -8px 8px 20px 0px #b5b5b5;
   padding: 60px;
   border-radius: 20px;
-  animation: 0.8s ease-in 0s 1 form-slider;
+  /* animation: 0.8s ease-in 0s 1 form-slider; */
 }
 
 #signup-form {
