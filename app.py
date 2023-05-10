@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, jsonify
 from flask_mysqldb import MySQL
 import os
+from utils import prediction
 
 app = Flask(__name__)
 
@@ -59,7 +60,14 @@ def signup():
 def tools():
 	if 'logged_in' not in session:
 		return redirect('/login')
-	return render_template('tools.html')
+	variable = request.args.get('medicine')
+	country = request.args.get('country')
+	if variable and country:
+		sale_prediction = prediction.predict(variable, country)
+		return render_template('results.html', predict=sale_prediction)
+	elif variable:
+		return render_template('tools.html', variables=prediction.variables, countrys=prediction.get_countrys(variable))
+	return render_template('tools.html', variables=prediction.variables)
 
 @app.route("/aboutus")
 def aboutus():

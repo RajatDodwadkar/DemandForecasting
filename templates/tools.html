@@ -9,27 +9,39 @@
 {% block body %}
 <main class="container">
   <div id="tools-form">
-    <form action="#">
+    <form action="/tools">
       <p class="tools-input-sec">
-        <label class="input-name" for="input-1">Input 1:&nbsp;</label>
-        <input name="input-1" type="text" placeholder="Placeholder" />
+        <label class="input-name" for="input-1">Medicine:&nbsp;</label>
+        <!-- <input name="input-1" type="text" placeholder="Placeholder" /> -->
+        <select required class="input-1" name="medicine" id="medicine">
+          {% if request.args.get('medicine') %}
+            <option disabled>-- Select Medicine --</option>
+            {% for med in variables %}
+              {% if request.args.get('medicine') == med %}
+                <option value="{{med}}" selected>{{med}}</option>
+              {% else %}
+                <option value="{{med}}">{{med}}</option>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <option disabled selected>-- Select Medicine --</option>
+            {% for med in variables %}
+            <option value="{{med}}">{{med}}</option>
+            {% endfor %}
+          {% endif %}
+        </select>
       </p>
+      {% if countrys %}
       <p class="tools-input-sec">
-        <label class="input-name" for="input-2">Input 2:&nbsp;</label>
-        <input name="input-2" type="text" placeholder="Placeholder" />
+        <label class="input-name" for="input-1">Country :&nbsp;</label>
+        <!-- <input name="input-1" type="text" placeholder="Placeholder" /> -->
+        <select required class="input-1" name="country" id="country">
+          {% for country in countrys %}
+          <option value="{{country}}">{{country}}</option>
+          {% endfor %}
+        </select>
       </p>
-      <p class="tools-input-sec">
-        <label class="input-name" for="input-3">Input 3:&nbsp;</label>
-        <input name="input-3" type="text" placeholder="Placeholder" />
-      </p>
-      <p class="tools-input-sec">
-        <label class="input-name" for="input-4">Input 4:&nbsp;</label>
-        <input name="input-4" type="text" placeholder="Placeholder" />
-      </p>
-      <p class="tools-input-sec">
-        <label class="input-name" for="input-5">Input 5:&nbsp;</label>
-        <input name="input-5" type="text" placeholder="Placeholder" />
-      </p>
+      {% endif %}
       <button type="submit" id="tool-btn">Submit</button>
     </form>
     <img id="tools-img" src="{{ url_for('static', filename='images/tools.jpg') }}" alt="tools-image" />
