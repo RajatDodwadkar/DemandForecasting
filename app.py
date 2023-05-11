@@ -5,6 +5,9 @@ from utils import prediction
 
 app = Flask(__name__)
 
+# Disable File Caching
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'password'
@@ -12,6 +15,18 @@ app.config['MYSQL_DB'] = 'demand_forecasting'
 app.secret_key = os.urandom(24)
 
 mysql = MySQL(app)
+
+@app.after_request
+def add_header(r):
+	"""
+	Add headers to both force latest IE rendering engine or Chrome Frame,
+	and also to cache the rendered page for 10 minutes.
+	"""
+	r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+	r.headers["Pragma"] = "no-cache"
+	r.headers["Expires"] = "0"
+	r.headers['Cache-Control'] = 'public, max-age=0'
+	return r
 
 @app.route("/")
 def index():
