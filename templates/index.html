@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylelink %}
+<link rel="stylesheet" href="{% static 'css/index-style.css' %}" />
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<main id="home-container" class="container">
+  <div id="hero-sec">
+    <div id="header-sec">
+      <span id="hero-header">Demand Forecasting</span>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque
+        necessitatibus consectetur eum tempora reiciendis, corporis
+        veritatis deleniti beatae quam deserunt iure? Labore minima eum
+        veritatis quod saepe nostrum dicta sunt. Nulla quam est voluptas
+        unde hic vel accusamus consequatur reprehenderit exercitationem
+        nobis itaque rerum sed laudantium corporis, autem quod, dolorem
+        distinctio labore aliquam? Illo ab possimus non quos adipisci dolor!
+      </p>
+    </div>
+    <img
+      src="{% static 'images/dem-forecast-bg.jpg' %}"
+      alt="demand-forecasting-hero-image"
+    />
+  </div>
+  <div id="hiw-sec">
+    <h2>How It Works ?</h2>
+    <hr id="hiw-underscore" class="header-underscore" />
+    <ul>
+      <li>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum
+        voluptatibus perspiciatis in sint, dolor quas quos quaerat
+        exercitationem perferendis velit itaque harum consectetur aliquid
+        obcaecati numquam magni, deleniti eos officiis.
+      </li>
+      <li>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum
+        voluptatibus perspiciatis in sint, dolor quas quos quaerat
+        exercitationem perferendis velit itaque harum consectetur aliquid
+        obcaecati numquam magni, deleniti eos officiis.
+      </li>
+      <li>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum
+        voluptatibus perspiciatis in sint, dolor quas quos quaerat
+        exercitationem perferendis velit itaque harum consectetur aliquid
+        obcaecati numquam magni, deleniti eos officiis.
+      </li>
+      <li>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum
+        voluptatibus perspiciatis in sint, dolor quas quos quaerat
+        exercitationem perferendis velit itaque harum consectetur aliquid
+        obcaecati numquam magni, deleniti eos officiis.
+      </li>
+    </ul>
+  </div>
+  <div id="feat-sec">
+    <h2>Features</h2>
+    <hr id="features-underscore" class="header-underscore" />
+    <div id="feat-main-sec">
+      <div id="feat-img-sec">
+        <img
+          id="feat-image"
+          src="{% static 'images/features.svg' %}"
+          alt="features-image"
+        />
+      </div>
+      <ul id="feat-ul">
+        <li class="feat-items">
+          <h4>Lorem Ipsum 1</h4>
+          <p class="feat-item-info">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          </p>
+        </li>
+        <li class="feat-items">
+          <h4>Lorem Ipsum 2</h4>
+          <p class="feat-item-info">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          </p>
+        </li>
+        <li class="feat-items">
+          <h4>Lorem Ipsum 3</h4>
+          <p class="feat-item-info">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          </p>
+        </li>
+        <li class="feat-items">
+          <h4>Lorem Ipsum 4</h4>
+          <p class="feat-item-info">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</main>
+{% endblock %}

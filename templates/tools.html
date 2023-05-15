@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylelink %}
+<link rel="stylesheet" href="{% static 'css/tools-style.css' %}" />
+{% endblock %}
+
+{% block title %}Tool{% endblock %}
+
+{% block body %}
+<main class="container">
+  <div id="tools-form">
+    <form action="/tools">
+      {% csrf_token %}
+      <p class="tools-input-sec">
+        <label class="input-name" for="input-1">Medicine:&nbsp;</label>
+        <!-- <input name="input-1" type="text" placeholder="Placeholder" /> -->
+        <select required class="input-1" name="medicine" id="medicine">
+          {% if request.GET.medicine %}
+            <option disabled>-- Select Medicine --</option>
+            {% for med in variables %}
+              {% if request.GET.medicine == med %}
+                <option value="{{med}}" selected>{{med}}</option>
+              {% else %}
+                <option value="{{med}}">{{med}}</option>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <option disabled selected>-- Select Medicine --</option>
+            {% for med in variables %}
+            <option value="{{med}}">{{med}}</option>
+            {% endfor %}
+          {% endif %}
+        </select>
+      </p>
+      {% if countrys %}
+      <p class="tools-input-sec">
+        <label class="input-name" for="input-1">Country :&nbsp;</label>
+        <!-- <input name="input-1" type="text" placeholder="Placeholder" /> -->
+        <select required class="input-1" name="country" id="country">
+          {% for country in countrys %}
+          <option value="{{country}}">{{country}}</option>
+          {% endfor %}
+        </select>
+      </p>
+      {% endif %}
+      <button type="submit" id="tool-btn">Submit</button>
+    </form>
+    <img id="tools-img" src="{% static 'images/tools.jpg' %}" alt="tools-image" />
+  </div>
+</main>
+{% endblock %}

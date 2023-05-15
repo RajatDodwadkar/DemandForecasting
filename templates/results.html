@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylelink %}
+<link rel="stylesheet" href="{% static 'css/result-style.css' %}" />
+{% endblock %}
+
+{% block title %}Prediction{% endblock %}
+
+{% block body %}
+<main class="container">
+  <div class="col">
+    <h1>Next Year Sale Prediction :- {{ predict }}</h1>
+    <hr>
+    <img src="{% static 'out/predict.png' %}" alt="Data Image" style="width: 60%;">
+  </div>
+</main>
+{% endblock %}

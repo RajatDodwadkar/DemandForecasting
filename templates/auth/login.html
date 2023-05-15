@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylelink %}
+<link rel="stylesheet" href="{% static 'css/auth/login-style.css' %}" />
+{% endblock %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+<main class="container" style="height:100vh;">
+  <div id="login-image-div">
+    <img src="{% static 'images/login.svg' %}" alt="" />
+  </div>
+  <div id="login-form-div">
+    <h1 id="login-header">Login</h1>
+    <form id="login-form" method="POST" action="/login/">
+      {% csrf_token %}
+      <p id="email-inp-sec">
+        <label id="lg-email-lb" for="email"><h4>Email</h4></label>
+        <input name="email" type="text" placeholder="example@gmail.com" />
+      </p>
+      <p id="password-inp-sec">
+        <label id="lg-password-lb" for="password"><h4>Password</h4></label>
+        <input name="password" type="password" placeholder="********" />
+      </p>
+      <button type="submit" id="login-btn">Login</button>
+    </form>
+    {% if msg %}
+      <p style="margin: 10px auto; color: rgb(216, 44, 44);">{{ msg }}</p>
+    {% endif %}
+    <a id="signup-link" href="{% url 'sign_up' %}">Don't have an account? Sign Up here</a>
+  </div>
+</main>
+{% endblock %}
