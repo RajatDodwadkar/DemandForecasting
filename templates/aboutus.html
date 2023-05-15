@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block stylelink %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/about-us-style.css') }}" />
+<link rel="stylesheet" href="{% static 'css/about-us-style.css' %}" />
 {% endblock %}
 
 {% block title %}About Us{% endblock %}
@@ -43,7 +44,7 @@
           necessitatibus eaque hic repudiandae deleniti impedit accusamus
           culpa.
         </p>
-        <img id="team-img" src="{{ url_for('static', filename='images/about-us.svg') }}" alt="about-us-image" />
+        <img id="team-img" src="{% static 'images/about-us.svg' %}" alt="about-us-image" />
       </div>
     </div>
   </div>
