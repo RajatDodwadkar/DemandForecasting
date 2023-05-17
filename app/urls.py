@@ -5,6 +5,7 @@ urlpatterns = [
 	path('', views.index, name='index'),
     path('tools/', views.tools, name='tools'),
 	path('aboutus/', views.about_us, name='aboutus'),
+    path('shop/', views.shop, name="shop"),
     
 	# Authentication
 	path('login/', views.log_in, name='log_in'),
