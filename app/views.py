@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from app import utils
+from app import models
+
+# Variable to track state of Cart
+CART = {}
 
 def index(request):
     return render(request, 'index.html')
@@ -62,3 +66,18 @@ def log_out(request):
         request.session.pop('logged_in')
         return redirect('/')
     return redirect('/login/')
+
+def shop(request):
+    context = {}
+    if request.method == "POST":
+        med = request.POST.get("med")
+        if request.POST.get('action') == "add":
+            CART[med] = {'qty': 1}
+        elif request.POST.get('action') == "delete":
+            if CART.get(med) != None:
+                CART.pop(med)
+    medicines = models.Medicine.objects.all()
+    context['CART'] = CART
+    context['medicines'] = medicines
+    # print(CART)
+    return render(request, 'shop/shop.html', context)

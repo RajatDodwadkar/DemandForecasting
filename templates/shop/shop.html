@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylelink %}
+<link rel="stylesheet" href="{% static 'css/shop/shop-style.css' %}" />
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<main id="home-container" class="container">
+  <h2>Shop</h2>
+  <div class="row">
+    {% for med in medicines %}
+        <div class="col">
+            <div class="card">
+                <h4>{{ med.name }}</h4>
+                <div  class="row card-meta">
+                    <h5>{{ med.price }} ₹</h5>
+                    <span>|</span>
+                    <h5>{{ med.units }} Units</h5>
+                </div>
+                <hr class="card-divider">
+                <div class="row card-actions">
+                    <a class="btn" style="background-color: #55c2da;" href="#">Order</a>
+                    {% if med.name not in CART %}
+                        <form action="/shop/" method="post">
+                            {% csrf_token %}
+                            <input hidden value="add" name="action" />
+                            <button class="btn" value="{{ med.name }}" name="med" type="submit" >Add To Cart</button>
+                        </form>
+                    {% else %}
+                        <form action="/shop/" method="post">
+                            {% csrf_token %}
+                            <input hidden value="delete" name="action" />
+                            <button style="background-color: #f54343;" class="btn" value="{{ med.name }}" name="med" type="submit" >Remove From Cart</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <h5>No Medicine Added! Please add medicine from dashboard!</h5>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}

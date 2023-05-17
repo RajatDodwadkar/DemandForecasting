@@ -27,6 +27,7 @@
           <li id="about-us" class="nav-item"><a href="{% url 'aboutus' %}">About Us</a></li>
           {% if request.session.logged_in %}
             <li id="tools" class="nav-item"><a href="{% url 'tools' %}">Tool</a></li>
+            <li id="tools" class="nav-item"><a href="{% url 'shop' %}">Shop</a></li>
             <li id="about-us" class="nav-item"><a href="/logout">Logout</a></li>
           {% else %}
             <li id="about-us" class="nav-item"><a href="{% url 'log_in' %}">Login</a></li>
