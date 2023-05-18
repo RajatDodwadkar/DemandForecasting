@@ -76,7 +76,11 @@ def shop(request):
         elif request.POST.get('action') == "delete":
             if CART.get(med) != None:
                 CART.pop(med)
-    medicines = models.Medicine.objects.all()
+    med = request.GET.get('q')
+    if med:
+        medicines = models.Medicine.objects.filter(name__icontains=med)
+    else:
+        medicines = models.Medicine.objects.all()
     context['CART'] = CART
     context['medicines'] = medicines
     # print(CART)

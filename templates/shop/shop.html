@@ -10,6 +10,13 @@
 {% block body %}
 <main id="home-container" class="container">
   <h2>Shop</h2>
+  <div id="search-div">
+    <form id="search-form" action="{% url 'shop' %}" method="get">
+        {% csrf_token %}
+        <input value="{{ request.GET.q }}" id="search-input" name="q" type="search" placeholder="Search" >
+        <button class="btn" id="search-submit" type="submit">Search</button>
+    </form>
+  </div>
   <div class="row">
     {% for med in medicines %}
         <div class="col">
