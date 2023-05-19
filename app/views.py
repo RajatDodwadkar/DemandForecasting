@@ -85,3 +85,12 @@ def shop(request):
     context['medicines'] = medicines
     # print(CART)
     return render(request, 'shop/shop.html', context)
+
+def fill_stock(request, med_id):
+    context = {}
+    if request.method == "POST":
+        msg="Order Sent Successfully!"
+        return redirect(f'/shop/?msg={msg}')
+    med = models.Medicine.objects.get(pk=med_id)
+    context['med'] = med
+    return render(request, 'shop/fillstock.html', context)

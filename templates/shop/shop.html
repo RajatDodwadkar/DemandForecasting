@@ -17,6 +17,9 @@
         <button class="btn" id="search-submit" type="submit">Search</button>
     </form>
   </div>
+  {% if request.GET.msg %}
+    <p class="msg" >{{ request.GET.msg}}</p>
+  {% endif %}
   <div class="row">
     {% for med in medicines %}
         <div class="col">
@@ -29,7 +32,7 @@
                 </div>
                 <hr class="card-divider">
                 <div class="row card-actions">
-                    <a class="btn" style="background-color: #55c2da;" href="#">Order</a>
+                    <a class="btn" style="background-color: #55c2da;" href="{% url 'fillstock' med.id %}">Order</a>
                     {% if med.name not in CART %}
                         <form action="/shop/" method="post">
                             {% csrf_token %}
