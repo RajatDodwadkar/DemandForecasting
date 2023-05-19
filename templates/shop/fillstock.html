@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylelink %}
+<link rel="stylesheet" href="{% static 'css/shop/fillstock-style.css' %}" />
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<main id="home-container" class="container">
+    <h3>Order The Stock</h3>
+    <br>
+    <div>
+        <span class="med-name">Medicine Name: </span>
+        <span style="font-size: 28px;"> {{ med.name }}</span>
+    </div>
+    <form class="qty-form" action="{% url 'fillstock' med.id %}" method="post">
+        {% csrf_token %}
+        <div class="inp-group">
+            <label class="qty-label" >Order Quantity : </label>&nbsp;
+            <input required name="qty" class="qty-input" min="1" placeholder="Number of quantity" type="number">
+        </div>
+        <button class="submit-btn" type="submit" >Submit</button>
+    </form>
+</main>
+{% endblock %}
