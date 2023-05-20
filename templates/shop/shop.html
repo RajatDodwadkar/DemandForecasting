@@ -24,6 +24,9 @@
     {% for med in medicines %}
         <div class="col">
             <div class="card">
+                {% if med.units == 0 %}
+                    <h5 class="out-of-stock">Out Of Stock!</h5>
+                {% endif %}
                 <h4>{{ med.name }}</h4>
                 <div  class="row card-meta">
                     <h5>{{ med.price }} ₹</h5>
@@ -33,13 +36,13 @@
                 <hr class="card-divider">
                 <div class="row card-actions">
                     <a class="btn" style="background-color: #55c2da;" href="{% url 'fillstock' med.id %}">Order</a>
-                    {% if med.name not in CART %}
+                    {% if med.name not in CART and med.units != 0 %}
                         <form action="/shop/" method="post">
                             {% csrf_token %}
                             <input hidden value="add" name="action" />
                             <button class="btn" value="{{ med.name }}" name="med" type="submit" >Add To Cart</button>
                         </form>
-                    {% else %}
+                    {% elif med.name in CART %}
                         <form action="/shop/" method="post">
                             {% csrf_token %}
                             <input hidden value="delete" name="action" />
