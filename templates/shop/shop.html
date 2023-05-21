@@ -40,6 +40,9 @@
                         <form action="/shop/" method="post">
                             {% csrf_token %}
                             <input hidden value="add" name="action" />
+                            <input hidden name="medId" value="{{ med.id }}"/>
+                            <input hidden name="medPrice" value="{{ med.price }}"/>
+                            <input hidden name="unitQty" value="{{ med.units }}"/>
                             <button class="btn" value="{{ med.name }}" name="med" type="submit" >Add To Cart</button>
                         </form>
                     {% elif med.name in CART %}

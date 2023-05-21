@@ -71,8 +71,17 @@ def shop(request):
     context = {}
     if request.method == "POST":
         med = request.POST.get("med")
+        medId = request.POST.get("medId")
+        medPrice = request.POST.get("medPrice")
+        medUnitsQty = request.POST.get("unitQty")
         if request.POST.get('action') == "add":
-            CART[med] = {'qty': 1}
+            CART[med] = {
+                'qty': 1,
+                'name': med,
+                'id': medId,
+                'price': medPrice,
+                'units': medUnitsQty
+            }
         elif request.POST.get('action') == "delete":
             if CART.get(med) != None:
                 CART.pop(med)
@@ -94,3 +103,20 @@ def fill_stock(request, med_id):
     med = models.Medicine.objects.get(pk=med_id)
     context['med'] = med
     return render(request, 'shop/fillstock.html', context)
+
+def cart_view(request):
+    context = {}
+    context['CART'] = CART
+    if request.method == "POST":
+        total = 0
+        for i in CART:
+            qty = request.POST.get(i)
+            CART[i]['qty'] = qty
+            total += (int(qty) * int(CART[i]['price']))
+            med = models.Medicine.objects.get(id=CART[i]['id'])
+            med.units -= int(qty)
+            med.save()
+        context['total'] = total
+        CART.clear()
+        return render(request, 'shop/bill.html', context)        
+    return render(request, 'shop/cart.html', context)
