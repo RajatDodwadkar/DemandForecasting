@@ -7,6 +7,7 @@ urlpatterns = [
 	path('aboutus/', views.about_us, name='aboutus'),
     path('shop/', views.shop, name="shop"),
     path('fillstock/<int:med_id>', views.fill_stock, name="fillstock"),
+    path('cart/', views.cart_view, name="cart"),
     
 	# Authentication
 	path('login/', views.log_in, name='log_in'),
