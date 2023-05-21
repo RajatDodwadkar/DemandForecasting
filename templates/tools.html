@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block stylelink %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/tools-style.css') }}" />
+<link rel="stylesheet" href="{% static 'css/tools-style.css' %}" />
 {% endblock %}
 
 {% block title %}Tool{% endblock %}
@@ -10,14 +11,15 @@
 <main class="container">
   <div id="tools-form">
     <form action="/tools">
+      {% csrf_token %}
       <p class="tools-input-sec">
         <label class="input-name" for="input-1">Medicine:&nbsp;</label>
         <!-- <input name="input-1" type="text" placeholder="Placeholder" /> -->
         <select required class="input-1" name="medicine" id="medicine">
-          {% if request.args.get('medicine') %}
+          {% if request.GET.medicine %}
             <option disabled>-- Select Medicine --</option>
             {% for med in variables %}
-              {% if request.args.get('medicine') == med %}
+              {% if request.GET.medicine == med %}
                 <option value="{{med}}" selected>{{med}}</option>
               {% else %}
                 <option value="{{med}}">{{med}}</option>
@@ -44,7 +46,7 @@
       {% endif %}
       <button type="submit" id="tool-btn">Submit</button>
     </form>
-    <img id="tools-img" src="{{ url_for('static', filename='images/tools.jpg') }}" alt="tools-image" />
+    <img id="tools-img" src="{% static 'images/tools.jpg' %}" alt="tools-image" />
   </div>
 </main>
 {% endblock %}

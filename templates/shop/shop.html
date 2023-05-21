@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylelink %}
+<link rel="stylesheet" href="{% static 'css/shop/shop-style.css' %}" />
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<main id="home-container" class="container">
+  <h2>Shop</h2>
+  <div id="search-div">
+    <form id="search-form" action="{% url 'shop' %}" method="get">
+        {% csrf_token %}
+        <input value="{{ request.GET.q }}" id="search-input" name="q" type="search" placeholder="Search" >
+        <button class="btn" id="search-submit" type="submit">Search</button>
+    </form>
+  </div>
+  {% if request.GET.msg %}
+    <p class="msg" >{{ request.GET.msg}}</p>
+  {% endif %}
+  <div class="row">
+    {% for med in medicines %}
+        <div class="col">
+            <div class="card">
+                {% if med.units == 0 %}
+                    <h5 class="out-of-stock">Out Of Stock!</h5>
+                {% endif %}
+                <h4>{{ med.name }}</h4>
+                <div  class="row card-meta">
+                    <h5>{{ med.price }} ₹</h5>
+                    <span>|</span>
+                    <h5>{{ med.units }} Units</h5>
+                </div>
+                <hr class="card-divider">
+                <div class="row card-actions">
+                    <a class="btn" style="background-color: #55c2da;" href="{% url 'fillstock' med.id %}">Order</a>
+                    {% if med.name not in CART and med.units != 0 %}
+                        <form action="/shop/" method="post">
+                            {% csrf_token %}
+                            <input hidden value="add" name="action" />
+                            <input hidden name="medId" value="{{ med.id }}"/>
+                            <input hidden name="medPrice" value="{{ med.price }}"/>
+                            <input hidden name="unitQty" value="{{ med.units }}"/>
+                            <button class="btn" value="{{ med.name }}" name="med" type="submit" >Add To Cart</button>
+                        </form>
+                    {% elif med.name in CART %}
+                        <form action="/shop/" method="post">
+                            {% csrf_token %}
+                            <input hidden value="delete" name="action" />
+                            <button style="background-color: #f54343;" class="btn" value="{{ med.name }}" name="med" type="submit" >Remove From Cart</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <h5>No Medicine Added! Please add medicine from dashboard!</h5>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylelink %}
+<link rel="stylesheet" href="{% static 'css/shop/cart-bill-style.css' %}" />
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<main id="home-container" class="container">
+  <h2>Bill</h2>
+  <br>
+  <h4>Your Total Bill : {{ total }} ₹</h4>
+</main>
+{% endblock %}

@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block stylelink %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/auth/signup-style.css') }}" />
+<link rel="stylesheet" href="{% static 'css/auth/signup-style.css' %}" />
 {% endblock %}
 
 {% block title %}Sign Up{% endblock %}
@@ -9,11 +10,12 @@
 {% block body %}
 <main class="container" style="height:100vh;">
   <div id="signup-image-div">
-    <img src="../../static/images/signup.svg" alt="" />
+    <img src="{% static 'images/signup.svg' %}" alt="" />
   </div>
   <div id="signup-form-div">
     <h1 id="signup-header">Sign Up</h1>
-    <form id="signup-form" method="POST" action="/signup">
+    <form id="signup-form" method="POST" action="/signup/">
+      {% csrf_token %}
       <p id="email-inp-sec">
         <label id="lg-email-lb" for="email"><h4>Email</h4></label>
         <input name="email" type="text" placeholder="example@gmail.com" />
@@ -27,7 +29,7 @@
     {% if msg %}
       <p style="margin: 10px auto; color: rgb(216, 44, 44);">{{ msg }}</p>
     {% endif %}
-    <a id="signup-link" href="{{ url_for('login') }}">Already have an account? Login here</a>
+    <a id="signup-link" href="{% url 'log_in' %}">Already have an account? Login here</a>
   </div>
 </main>
 {% endblock %}

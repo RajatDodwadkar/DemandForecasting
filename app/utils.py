@@ -79,3 +79,4 @@ def get_countrys(variable):
         df = new_data.loc[new_data['Variable'] == i]
         cou[i] = df['Country'].unique()
     return list(np.sort(cou[variable]))
+ 

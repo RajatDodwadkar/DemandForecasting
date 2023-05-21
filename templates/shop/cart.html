@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylelink %}
+<link rel="stylesheet" href="{% static 'css/shop/cart-bill-style.css' %}" />
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<main id="home-container" class="container">
+  <h2>Cart</h2>
+  <div id="cart-items">
+    <form class="cart-form" action="{% url 'cart' %}" method="post">
+      {% csrf_token %}
+      {% for key, med in CART.items %}
+        <div class="item">
+          <h5>{{ med.name }}</h5>
+          <h5>{{ med.price }} ₹</h5>
+          <input name="{{ med.name }}" required class="qty-input" value="{{ med.qty }}" max="{{ med.units }}" min="1" type="number">
+        </div>
+        {% empty %}
+          <h5>Add item to cart from shop</h5>
+        {% endfor %}
+        {% if CART.items %}
+          <button class="btn" type="submit">Finalize</button>
+        {% endif %}
+    </form>
+</main>
+{% endblock %}
