@@ -1,4 +1,5 @@
 # DemandForecasting
+- This project uses `MySQL` as its DBMS
 
 > Development python version : 3.10.6
 
