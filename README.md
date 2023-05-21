@@ -4,7 +4,7 @@
 
 ---
 
-## Steps to install ( Django Version - Bracnch `feature-1`)
+## Steps to install 
 
 > Given commands are for Linux based systems
 
